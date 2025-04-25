@@ -70,17 +70,17 @@ $pawpaw = new Fruit('pawpaw','yellow');
 
 
 //public property
-class Department {
-    public $name;
+// class Department {
+//     public $name;
 
-    function __construct($name)
-    {
-        $this->name = $name;
-    }
-}
- $department = new Department("Computer Science");
+//     function __construct($name)
+//     {
+//         $this->name = $name;
+//     }
+// }
+//  $department = new Department("Computer Science");
 
- echo "i'm in {$department->name} department <br>";
+//  echo "i'm in {$department->name} department <br>";
 
 
 //protected property
@@ -135,7 +135,88 @@ $intro = new Newname("Ibrahim");
 //echo "my name is {$intro->name}"; // will bring out error(Cannot access private property Newname)
 
 
-echo "my name is {$intro->getName()}";// will work
+echo "my name is {$intro->getName()} <br>";// will work
+
+//protected property
+
+class School{
+    protected $school;
+
+    function __construct($school)
+    {
+        $this->school = $school;
+    }
+    public function schoolName(){
+        return $this->school;
+    }
+}
+
+$school = new School("Ladoke Akintola University of Technology, Ogbomoso.");
+
+//echo "I attend {$school->school}";//will bring out error (Cannot access protected property School::$school)
+echo "I attend {$school ->schoolName()}<br>";
+
+
+
+//inheritance
+// inheritance is When a class derives from another class. The child class will inherit all the public and protected properties and methods from the parent class.
+
+//An inherited class is defined by using the extends keyword.
+
+class Institution{
+    public $institute;
+
+    function __construct($institute)
+    {
+        $this -> institute = $institute;
+    }
+   
+}
+
+class Department extends Institution{
+    public $department;
+
+    function __construct($institute, $department)
+    {
+        $this -> department = $department;
+        parent::__construct($institute);
+
+        //I can also use this but make sure the argument is declared in the constructor
+        // $this -> institute = $institute;
+    }
+}
+
+$department = new Department("LAUTECH","Computer Science");
+
+echo "My Name Is Osunjimi Ibrahim From {$department->institute}. Department of {$department->department} <br>";
+
+
+
+//The final keyword can be used to prevent class inheritance or to prevent method overriding.
+
+// final class Food {
+//     public $food;
+
+//     function __construct($food)
+//     {
+//         $this -> food = $food;
+//     }
+// }
+
+// class Carbohydrate extends Food{
+//     public $carbohydrate;
+
+//     function __construct($food, $carbohydrate)
+//     {
+//         parent::__construct($food);
+//         $this -> carbohydrate = $carbohydrate;
+//     }
+// }
+
+// $food = new Carbohydrate("Rice","Egg");
+
+//echo "{$food->food} goes with {$food-> carbohydrate}"; //will bring out error (Class Carbohydrate cannot extend final class Food) because of the final keyword use to create the parent class
+
 
 
 
